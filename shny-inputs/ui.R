@@ -1,4 +1,4 @@
-
+### https://shiny.rstudio.com/images/shiny-cheatsheet.pdf
 library(shiny)
 library(lubridate)
 
@@ -30,11 +30,24 @@ shinyUI(fluidPage(
                       max=today(),
                       language = "es",
                       weekstart = 1,),
-            dateRangeInput("date_range_input", "Seleccione el rango de fechas:",
+            dateRangeInput("date_range_input", 
+                           "Seleccione el rango de fechas:",
                            start = today()-30,
                            end = today(),
                            format = 'dd/mm/yyyy', 
-                           language = 'es',separator = "a")
+                           language = 'es',separator = "a"),
+            checkboxInput("single_chk_box","Desea recibir informacion:",
+                          value = FALSE ),
+            checkboxGroupInput("chck_Box_group","Seleccione tipo:",
+                               choices = c("Carro","Camioneta","Moto","tractor"),
+                               selected = NULL  ),
+            radioButtons("radio_input", "Seleccione uno",
+                         choices = c("primaria","secundaria","universidad"),
+                         selected = NULL ),
+            actionButton("btn_ok","Refrescar"),
+            actionButton("btn_salir","Salir"),
+            actionLink("link_seguir","siguiente"),
+            submitButton("Ejecutar")
         ),
 
 
@@ -46,10 +59,18 @@ shinyUI(fluidPage(
             verbatimTextOutput("range_slider_io"),
             h2("Salida Numeric Input"),
             verbatimTextOutput("numeric_io"),
-            ("Salida Date Input"),
+            h2("Salida Date Input"),
             verbatimTextOutput("date_io"),
-            ("Salida Range Date Input"),
-            verbatimTextOutput("range_date_io")
-        )
+            h2("Salida Range Date Input"),
+            verbatimTextOutput("range_date_io"),
+            h2("Salida Check Box"),
+            verbatimTextOutput("chk_box_io"),
+            h2("salido del check box group"),
+            verbatimTextOutput("chk_box_group_io"),
+            h2("Salida del radio button"),
+            verbatimTextOutput("radio_io"),
+            h2("Salido Actin Button"),
+            verbatimTextOutput("ab_io")
+            )
     )
 ))
