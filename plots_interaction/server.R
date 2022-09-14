@@ -58,8 +58,8 @@ output$click_data <- renderPrint({
 
 
 output$mtcars_tbl <- renderTable({
- ## df <- nearPoints(mtcars,input$clk,xvar='wt',yvar='mpg')
-  df <- brushedPoints(mtcars,input$mbrush,xvar='wt',yvar='mpg')
+ df <- nearPoints(mtcars,input$clk,xvar='wt',yvar='mpg')
+  ## df <- brushedPoints(mtcars,input$mbrush,xvar='wt',yvar='mpg')
   if(nrow(df)!=0){
     df
   } else {
@@ -67,8 +67,6 @@ output$mtcars_tbl <- renderTable({
   }
   
 })
-
-
 
 
 output$plot_click_options <- renderPlot({
